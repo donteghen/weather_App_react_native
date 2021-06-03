@@ -1,21 +1,54 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Platform, TextInput , KeyboardAvoidingView, ImageBackground} from 'react-native';
+
+import SearchInput from './components/SearchInput';
+import getImage from './utils/getImage'
 
 export default function App() {
+  const [city, setCity] = useState('Douala, CM')
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <KeyboardAvoidingView style={styles.container} 
+    behavior= {Platform.OS === 'ios' ? 'padding' : ''}>
+    <ImageBackground source={getImage('rain')} imageStyle={styles.bgImage} style={styles.container_image}>
+    <Text style={[styles.text_big, styles.text_style]}>{city}</Text>
+      <Text style={[styles.text_small,styles.text_style]}>Rainny</Text>
+      <Text style={[styles.text_big,styles.text_style]}> 24°</Text>
+      <SearchInput placeholder='Search any city' SetCity={setCity}/>
+    </ImageBackground>
+      
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor:'white'
+    
   },
+  text_style:{
+    ...Platform.select({
+      ios: {
+        fontFamily: 'AvenirNext-Regular'
+      },
+      android:{
+        fontFamily:'Roboto',
+      }
+    }),
+    textAlign :'center',
+    color:'white'
+  },
+  text_big:{
+    fontSize:30
+  },
+  text_small : {
+    fontSize:18
+  },
+  container_image:{
+    flex:1,
+    resizeMode:'cover',
+    justifyContent:'center'
+  },
+ 
 });
