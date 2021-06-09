@@ -22,7 +22,8 @@ const fetchLocationId = async (querysearch) =>{
 
 const fetchWeather = async (woeid) =>{
     const woeidFetchUrl = `https://www.metaweather.com/api/location/${woeid}/`
-    const result = await fetcher(locationFetchUrl);
+    const result = await fetcher(woeidFetchUrl);
+    //console.log(result)
     return result
 }
 

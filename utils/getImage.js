@@ -3,18 +3,18 @@ const  Clear = require('../assets/clear.jpg')
 const Rain = require('../assets/rain.jpg')
 
 const getImage = (name) =>{
-    switch(name){
-        case 'clear' : 
-            return Clear
-
-        case 'cloud' : 
-            return Cloud;
-
-        case 'rain' :
-            return Rain
-         
-        default: 
-            return Rain    
+    console.log(name)
+    if(!name){
+        return Clear
+    }
+    if(name.indexOf('ain') !== -1 || name.indexOf('ower') !== -1){
+        return Rain
+    }
+    if(name.indexOf('oud') !== -1){
+        return Cloud
+    }
+    if(name.indexOf('ear') !== -1){
+        return Clear
     }
 }
 export default getImage
